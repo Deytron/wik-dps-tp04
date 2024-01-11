@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: echo
   name: wik-dps-tp04
   labels:
     app: wik-dps-tp04
@@ -10,7 +11,7 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 2
+      maxUnavailable: 50%
   selector:
     matchLabels:
       app: wik-dps-tp04
@@ -24,3 +25,10 @@ spec:
           image: registry.cluster.wik.cloud/public/echo:latest
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
