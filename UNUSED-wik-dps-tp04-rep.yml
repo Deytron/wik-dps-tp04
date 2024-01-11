@@ -1,0 +1,22 @@
+# apiVersion: apps/v1
+# kind: ReplicaSet
+# metadata:
+#   name: wik-dps-tp04
+#   namespace: echo
+#   labels:
+#     app: wik-dps-tp04
+# spec:
+#   replicas: 4
+#   selector:
+#     matchLabels:
+#       app: wik-dps-tp04
+#   template:
+#     metadata:
+#       labels:
+#         app: wik-dps-tp04
+#     spec:
+#       containers:
+#         - name: wik-dps-tp04
+#           image: registry.cluster.wik.cloud/public/echo:latest
+#           ports:
+#             - containerPort: 8080

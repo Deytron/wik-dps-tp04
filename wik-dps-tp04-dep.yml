@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wik-dps-tp04
+  labels:
+    app: wik-dps-tp04
+spec:
+  replicas: 4
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 2
+  selector:
+    matchLabels:
+      app: wik-dps-tp04
+  template:
+    metadata:
+      labels:
+        app: wik-dps-tp04
+    spec:
+      containers:
+        - name: wik-dps-tp04
+          image: registry.cluster.wik.cloud/public/echo:latest
+          ports:
+            - containerPort: 80
